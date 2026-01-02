@@ -1,0 +1,103 @@
+*kanji-jump.txt*  Jump between kanji characters
+
+License: MIT
+
+==============================================================================
+CONTENTS                                            *kanji-jump-contents*
+
+    1. Introduction .......................... |kanji-jump-introduction|
+    2. Usage ................................. |kanji-jump-usage|
+    3. Configuration ......................... |kanji-jump-configuration|
+    4. API ................................... |kanji-jump-api|
+
+==============================================================================
+1. INTRODUCTION                                     *kanji-jump-introduction*
+
+vim-kanji-jump provides motions for jumping between kanji characters in
+Japanese text.
+
+==============================================================================
+2. USAGE                                            *kanji-jump-usage*
+
+                                                    *]k*
+]k                      Jump to the next kanji character.
+
+                                                    *[k*
+[k                      Jump to the previous kanji character.
+
+                                                    *]K*
+]K                      Jump to the next kanji block (consecutive kanji).
+
+                                                    *[K*
+[K                      Jump to the previous kanji block. If cursor is in
+                        the middle of a block, jump to the start of the
+                        current block first.
+
+                                                    *kanji-jump-;*
+;                       Repeat last kanji jump in the same direction.
+                        Falls back to normal Vim `;` after `f`/`t`/`F`/`T`.
+
+                                                    *kanji-jump-,*
+,                       Repeat last kanji jump in the reverse direction.
+                        Falls back to normal Vim `,` after `f`/`t`/`F`/`T`.
+
+All motions:
+- Work across multiple lines
+- Support count (e.g., `3]k` jumps 3 kanji ahead)
+- Work with operators (e.g., `d]k`, `c]K`, `y[k`)
+
+==============================================================================
+3. CONFIGURATION                                    *kanji-jump-configuration*
+
+Call the setup function with optional configuration: >lua
+
+    require('kanji-jump').setup({
+      default_mappings = true,
+      mappings = {
+        next_kanji = ']k',
+        prev_kanji = '[k',
+        next_kanji_block = ']K',
+        prev_kanji_block = '[K',
+      },
+      wrap = false,
+      repeat_motions = true,
+    })
+<
+
+                                                    *kanji-jump-default_mappings*
+default_mappings        Boolean (default: true)
+                        Set to false to disable all default key mappings.
+
+                                                    *kanji-jump-mappings*
+mappings                Table
+                        Customize key mappings.
+
+                                                    *kanji-jump-wrap*
+wrap                    Boolean (default: false)
+                        If true, search wraps around file boundaries.
+
+                                                    *kanji-jump-repeat_motions*
+repeat_motions          Boolean (default: true)
+                        If true, `;` and `,` repeat kanji jumps.
+                        After `f`/`t`/`F`/`T`, normal Vim behavior is used.
+
+==============================================================================
+4. API                                              *kanji-jump-api*
+
+                                                    *kanji-jump.next_kanji()*
+next_kanji()            Jump to the next kanji character.
+
+                                                    *kanji-jump.prev_kanji()*
+prev_kanji()            Jump to the previous kanji character.
+
+                                                    *kanji-jump.next_kanji_block()*
+next_kanji_block()      Jump to the next kanji block.
+
+                                                    *kanji-jump.prev_kanji_block()*
+prev_kanji_block()      Jump to the previous kanji block.
+
+                                                    *kanji-jump.is_kanji()*
+is_kanji({char})        Return true if {char} is a kanji character.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
