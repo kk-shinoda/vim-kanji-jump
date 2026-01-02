@@ -23,7 +23,7 @@ Neovim plugin for jumping between kanji characters in Japanese text.
 
 ```lua
 {
-  'YOUR_USERNAME/vim-kanji-jump',
+  'kk-shinoda/vim-kanji-jump',
   config = function()
     require('kanji-jump').setup()
   end,
@@ -34,7 +34,7 @@ Neovim plugin for jumping between kanji characters in Japanese text.
 
 ```lua
 use {
-  'YOUR_USERNAME/vim-kanji-jump',
+  'kk-shinodaa/vim-kanji-jump',
   config = function()
     require('kanji-jump').setup()
   end,
