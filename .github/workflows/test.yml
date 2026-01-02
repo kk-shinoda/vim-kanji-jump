@@ -20,9 +20,13 @@ jobs:
           neovim: true
           version: ${{ matrix.nvim }}
 
-      - name: Install vusted
+      - name: Install luarocks
         run: |
-          sudo luarocks install vusted
+          sudo apt-get update
+          sudo apt-get install -y luarocks
+
+      - name: Install vusted
+        run: sudo luarocks install vusted
 
       - name: Run tests
         run: make test
@@ -31,6 +35,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install luarocks
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y luarocks
 
       - name: Install luacheck
         run: sudo luarocks install luacheck
